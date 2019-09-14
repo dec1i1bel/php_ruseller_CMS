@@ -39,6 +39,15 @@ class Article
   * @param int ID статьи
   * @return Article|false Объект статьи или false, если запись не найдена или возникли проблемы
   */
-  
+  public static function getById($id) {
+    $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+    $sql = "select *, UNIX_TIMESTAMP(publicationDate) AS publicationDAte from articles where id = :id";
+    $st = $conn->prepare($sql);
+    $st->bindValue(":id", $id, PDO::PARAM_INT);
+    $st->execute();
+    $row = $st->fetch();
+    $conn = null;
+    if($row) return new Article($row);
+  }
 }
 ?>
