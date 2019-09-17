@@ -34,12 +34,20 @@ class Article
     }
   }
 
+
+
+
   /**
   * Возвращаем объект статьи, соответствующий заданному ID статьи
   *
   * @param int ID статьи
   * @return Article|false Объект статьи или false, если запись не найдена или возникли проблемы
   */
+
+
+
+
+  
   public static function getById($id) {
     //TODO упаковать соединние в отдельную функцию. PDO->bindValue зациклить (количестов итераций зависит от применения функции. если нужен 1 bindValue. то тоже цикл ,но с одним проходом)
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
@@ -51,6 +59,10 @@ class Article
     $conn = null;
     if($row) return new Article($row);
   }
+
+
+
+
   /**
 	* Возвращает все (или диапазон) объектов статей в базе данных
 	*
@@ -58,6 +70,10 @@ class Article
 	* @param string Optional Столбец по которому производится сортировка  статей (по умолчанию "publicationDate DESC")
 	* @return Array|false Двух элементный массив: results => массив, список объектов статей; totalRows => общее количество статей
   */
+
+
+
+
   public static function getList($numRows=1000000, $order='publicationDate DESC') {
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     // TODO: выстроить многострочный удобочитаемый запрос
@@ -79,10 +95,17 @@ class Article
     return(array("results"=>$list, "totalRows"=>$totalRows[0]));
   }
 
+
+
+
   /**
   * Вставляем текущий объект статьи в базу данных, устанавливаем его свойства.
   */
   // TODO: упаковать insert, update и delete статьи в метод
+
+
+
+
 
   public function insert() {
     //проверяем, есть ли ID у объекта статьи
@@ -104,9 +127,14 @@ class Article
     $conn = null;
   }
 
+
+
   /**
   * Обновляем текущий объект статьи в базе данных
   */
+
+
+
   public function update() {
     if(is_null($this->id)) {
       trigger_error("Article::update(): Attempt to update an object that doesnt have its ID .", E_USER_ERROR);
@@ -123,9 +151,14 @@ class Article
     $conn = null;
   }
 
+
+
   /**
   * Удаляем статью из БД
   */
+
+
+
   public function delete() {
     if(is_null($this->id)) {
       trigger_error("Article::delete(): Attempt to delete an object that doesnt have its ID .", E_USER_ERROR);
