@@ -87,7 +87,7 @@ class Article
       $article = new Article($row);
       $list[] = $article;
     }
-    //TODO: в запросах сделать правиьлный синтаксис (команды ЗАГЛАВНЫМИ БУКВАМИ)
+    //TODO: в запросах сделать правильный синтаксис (команды ЗАГЛАВНЫМИ БУКВАМИ)
     // Получаем общее количество статей, которые соответствуют критерию
     $sql = "SELECT FOUND_ROWS() AS totalRows";
     $totalRows = $conn->query($sql)->fetch();
