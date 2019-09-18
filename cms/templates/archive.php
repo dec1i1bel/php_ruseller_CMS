@@ -1,7 +1,7 @@
 <?php include "include/header.php" ?>
 <h1>Article Archive</h1>
 <ul id="headlines" class="archive">
-  <?php foreach($results['articles'] as $article) { ?>
+  <?php foreach($results['article'] as $article) { ?>
     <li>
       <h2><span class="pubDate"><?php date('j F Y', $article->publicationDate) ?></span><a href=".?action=viewArticle&amp;articleId=<?php echo $article->id ?>"><?php echo htmlspecialchars($article->title) ?></a></h2>
       <p class="summary"><?php echo htmlspecialchars($article>summary) ?></p>

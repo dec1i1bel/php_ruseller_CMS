@@ -14,10 +14,15 @@ class Article
     if(isset($data['summary'])) $this->summary=preg_replace("/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $data['summary']);
   }
 
+  
+
   /**
   * Устанавливаем свойств с помощью значений формы редактирования записи в заданном массиве
   * @param assoc Значения записи формы
   */
+
+
+
   public function storeFormValues($params)
   {
     //save all parameters from class constructor
@@ -87,8 +92,14 @@ class Article
       $article = new Article($row);
       $list[] = $article;
     }
+
+
+
     //TODO: в запросах сделать правильный синтаксис (команды ЗАГЛАВНЫМИ БУКВАМИ)
     // Получаем общее количество статей, которые соответствуют критерию
+
+
+
     $sql = "SELECT FOUND_ROWS() AS totalRows";
     $totalRows = $conn->query($sql)->fetch();
     $conn = null;
