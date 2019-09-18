@@ -46,15 +46,15 @@ function login() {
       // Ошибка входа: выводим сообщение об ошибке для пользователя
       $results['errorMessage'] = 'Incorrect username or password. Please try again.';
       require(TEMPLATE_PATH . '/admin/loginForm.php');
-    } else {
-
-      // Пользователь еще не получил форму: выводим её
-      require(TEMPLATE_PATH . '/admin/loginForm.php');
     }
+  } else {
+
+    // Пользователь еще не получил форму: выводим её
+    require(TEMPLATE_PATH . '/admin/loginForm.php');
   }
 }
 
-function logout {
+function logout() {
   unset($_SESSION['username']);
   header('Location: admin.php');
 }
@@ -95,7 +95,7 @@ function deleteArticle() {
 
 function listArticles() {
   $results = array();
-  $data = Article:getList();
+  $data = Article::getList();
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
   $results['pageTitle'] = 'All articles';
