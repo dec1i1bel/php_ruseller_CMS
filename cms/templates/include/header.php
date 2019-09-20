@@ -10,7 +10,7 @@
 <body>
   <div class="container">
     <a href=".">
-      <img src="images/logo.png" id="logo" alt="Widget News logo">
+      <img src="images/logo.jpg" id="logo" alt="Widget News logo">
     </a>
   </div>
 </body>
