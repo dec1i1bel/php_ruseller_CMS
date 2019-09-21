@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', true);
 date_default_timezone_set('Europe/Moscow');
-define('mysql:host=localhost; dbname=ruseller_cms');
+define('DB_DSN', 'mysql:host=localhost; dbname=ruseller_cms');
 define('DB_USERNAME', 'user1');
 define('DB_PASSWORD', 'Vkshmuk:0707');
 define('CLASS_PATH', 'classes');
