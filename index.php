@@ -1,9 +1,15 @@
 <?php
+/** TODO:
+ * создать на хостинге пустую бд
+ * дописать в конфиг пользователя и пароль бд
+ * посмотреть, как конфиг сам создаст бд по инструкции IF NOT EXISTS
+ */
 require("config.php");
 $action = isset($_GET['action']) ? $_GET['action'] : "";
 
 echo 'hello world<br>';
 var_dump($_GET);
+echo '<br>';
 
 switch($action) {
   case 'archive':
