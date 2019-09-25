@@ -6,11 +6,11 @@
  */
 require("config.php");
 $action = isset($_GET['action']) ? $_GET['action'] : "";
-
-echo 'hello world<br>';
-var_dump($_GET);
-echo '<br>';
-
+// phpinfo();
+?>
+<ul>
+  <li>$_GET :: <?php var_dump($_GET) ?></li>
+<?php
 switch($action) {
   case 'archive':
     archive();
