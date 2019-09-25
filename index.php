@@ -10,6 +10,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : "";
 ?>
 <ul>
   <li>$_GET :: <?php var_dump($_GET) ?></li>
+  <li><?php print_r(PDO::getAvailableDrivers()); ?></li>
 <?php
 switch($action) {
   case 'archive':

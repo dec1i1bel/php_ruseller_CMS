@@ -86,7 +86,8 @@ class Article
     <li>DB_USERNAME :: <?php var_dump(DB_USERNAME) ?></li>
     <li>DB_PASSWORD :: <?php var_dump(DB_PASSWORD) ?></li>
     <li>getList->$numrows :: <?php var_dump($numRows) ?></li>
-    <li>$conn :: <?php var_dump($conn) ?></li>
+    <li>$conn (var_dump) :: <?php var_dump($conn) ?></li>
+    <li>$conn (print_r) :: <?php print_r($conn) ?></li>
     <?php
     // TODO: выстроить многострочный удобочитаемый запрос
     $sql = "select sql_calc_found_rows *, unix_timestamp(publicationDate) as publicationDate from articles order by " . mysql_escape_string($order) . " limit :numRows";
