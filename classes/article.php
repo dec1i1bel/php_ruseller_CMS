@@ -81,16 +81,7 @@ class Article
 
   public static function getList($numRows=1000000, $order='publicationDate DESC') {
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    ?>
-    <li>DB_DSN :: <?php var_dump(DB_DSN) ?></li>
-    <li>DB_USERNAME :: <?php var_dump(DB_USERNAME) ?></li>
-    <li>DB_PASSWORD :: <?php var_dump(DB_PASSWORD) ?></li>
-    <li>getList->$numrows :: <?php var_dump($numRows) ?></li>
-    <li>$conn (var_dump) :: <?php var_dump($conn) ?></li>
-    <li>$conn (print_r) :: <?php print_r($conn) ?></li>
-    <?php
-    // TODO: выстроить многострочный удобочитаемый запрос
-    $sql = "select sql_calc_found_rows *, unix_timestamp(publicationDate) as publicationDate from articles order by " . mysql_escape_string($order) . " limit :numRows";
+    $sql = "select sql_calc_found_rows *, unix_timestamp(publicationDate) as publicationDate from articles limit :numRows";
     $st = $conn->prepare($sql);
     $st->bindValue(":numRows", $numRows, PDO::PARAM_INT);
     $st->execute();

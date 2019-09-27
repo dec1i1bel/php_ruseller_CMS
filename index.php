@@ -1,17 +1,6 @@
 <?php
-/** TODO:
- * создать на хостинге пустую бд
- * дописать в конфиг пользователя и пароль бд
- * посмотреть, как конфиг сам создаст бд по инструкции IF NOT EXISTS
- */
 require("config.php");
 $action = isset($_GET['action']) ? $_GET['action'] : "";
-// phpinfo();
-?>
-<ul>
-  <li>$_GET :: <?php var_dump($_GET) ?></li>
-  <li><?php print_r(PDO::getAvailableDrivers()); ?></li>
-<?php
 switch($action) {
   case 'archive':
     archive();
