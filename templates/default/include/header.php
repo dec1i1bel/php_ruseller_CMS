@@ -17,7 +17,7 @@
   <div class="container">
     <div class="d-flex align-items-center">
       <a href=".">
-        <img src="./templates/default/images/logo.png" id="logo" alt="Widget News logo" width='100' height='100'>
+        <img src="./templates/default/images/logo.png" id="logo" alt="Widget News logo" width='60' height='60'>
       </a>
       <h1>Brand new brand</h1>
     </div>
