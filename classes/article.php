@@ -57,7 +57,7 @@ class Article
   public static function getById($id) {
     //TODO упаковать соединние в отдельную функцию. PDO->bindValue зациклить (количестов итераций зависит от применения функции. если нужен 1 bindValue. то тоже цикл ,но с одним проходом)
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    $sql = "select *, UNIX_TIMESTAMP(publicationDate) AS publicationDAte from articles where id = :id";
+    $sql = "select *, UNIX_TIMESTAMP(publicationDate) AS publicationDate from articles where id = :id";
     $st = $conn->prepare($sql);
     $st->bindValue(":id", $id, PDO::PARAM_INT);
     $st->execute();

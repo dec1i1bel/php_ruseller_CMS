@@ -5,11 +5,11 @@
       ?>
         <li>
           <h2>
-            <span class="pubDate">
-              <?php echo date ('Y-m-d', $article->publicationDate) ?>
-            </span>
             <a href=".?action=viewArticle&amp;articleId=<?php echo $article->id ?>"><?php echo htmlspecialchars($article->title) ?></a>
           </h2>
+          <span class="pubDate">
+              <?php echo date ('Y-m-d', $article->publicationDate) ?>
+            </span>
           <p class="summary"><?php echo htmlspecialchars($article->summary) ?></p>
         </li>
       <?php } ?>
