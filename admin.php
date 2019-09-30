@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require('config.php');
 session_start();
 $action = isset($_GET['action']) ? $_GET['action'] : "";
@@ -45,12 +46,12 @@ function login() {
 
       // Ошибка входа: выводим сообщение об ошибке для пользователя
       $results['errorMessage'] = 'Incorrect username or password. Please try again.';
-      require(TEMPLATE_PATH . '/admin/loginForm.php');
+      require('admin/loginForm.php');
     }
   } else {
 
     // Пользователь еще не получил форму: выводим её
-    require(TEMPLATE_PATH . '/admin/loginForm.php');
+    require('admin/loginForm.php');
   }
 }
 
