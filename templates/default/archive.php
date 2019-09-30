@@ -1,10 +1,10 @@
 <?php include "include/header.php" ?>
 <h1>Articles Archive</h1>
 <ul id="headlines" class="archive">
-  <?php foreach($results['article'] as $article) { ?>
+  <?php foreach($results['articles'] as $article) { ?>
     <li>
       <h2><span class="pubDate"><?php date('j F Y', $article->publicationDate) ?></span><a href=".?action=viewArticle&amp;articleId=<?php echo $article->id ?>"><?php echo htmlspecialchars($article->title) ?></a></h2>
-      <p class="summary"><?php echo htmlspecialchars($article>summary) ?></p>
+      <p class="summary"><?php echo htmlspecialchars($article->$summary) ?></p>
     </li>
   <?php } ?>
 </ul>

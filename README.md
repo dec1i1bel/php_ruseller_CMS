@@ -5,4 +5,4 @@
 - admin panel
   - login form works, but nothing else after logging in
 - articles archive
-  - doesnt work
+  - page opens, but articles list is not shown
