@@ -16,10 +16,10 @@
 <body>
   <div class="container">
     <div class="d-flex align-items-center">
-      <a href=".">
-        <img src="./templates/default/images/logo.png" id="logo" alt="Widget News logo" width='60' height='60'>
+      <a href="/ruseller_CMS">
+        <img src="/ruseller_CMS/templates/default/images/logo.png" id="logo" alt="Widget News logo" width='60' height='60'>
       </a>
-      <h1>Brand new brand</h1>
+      <h1>My Site</h1>
     </div>
   
 </body>

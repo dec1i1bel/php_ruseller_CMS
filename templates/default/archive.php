@@ -1,5 +1,5 @@
 <?php include "include/header.php" ?>
-<h1>Article Archive</h1>
+<h1>Articles Archive</h1>
 <ul id="headlines" class="archive">
   <?php foreach($results['article'] as $article) { ?>
     <li>
@@ -9,5 +9,5 @@
   <?php } ?>
 </ul>
 <p><?php echo $results['totalRows'] ?> article<?php echo ($results['totalRows'] != 1) ? 's' : '' ?>in total.</p>
-<p><a href="./">Return to Homepage</a></p>
+<p><a href="/ruseller_CMS">Return to Homepage</a></p>
 <?php include "include/footer.php" ?>
