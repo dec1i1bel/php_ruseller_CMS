@@ -41,7 +41,8 @@ function login() {
 
       // Вход прошел успешно: создаем сессию и перенаправляем на страницу администратора
       $_SESSION['username'] = ADMIN_USERNAME;
-      header('Location: admin.php');
+      // header('Location:admin.php');
+      require(TEMPLATE_PATH . '/admin/listArticles.php');
     } else {
 
       // Ошибка входа: выводим сообщение об ошибке для пользователя

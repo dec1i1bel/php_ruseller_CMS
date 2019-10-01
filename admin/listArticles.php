@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Articles</title>
+</head>
+<body>
 <div id="adminHeader">
 <h2>Widget News Admin</h2>
 <p>You are logged in as <b><?php echo htmlspecialchars($_SESSION['username']) ?></b><a href="admin.php?action=logout">Logout</a></p>
@@ -27,3 +36,5 @@
 <p><?php echo $results['totalRows'] ?>article<?php echo($results['totalRows'] != 1) ? 's' : '' ?> in total.</p>
 
 <p><a href="admin.php?action=newArticle">Add new article</a></p>
+</body>
+</html>
