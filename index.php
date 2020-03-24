@@ -13,12 +13,12 @@ switch($action) {
 }
 
 function archive() {
-  $results_arch = array();
-  $data_arch = Article::getList(HOMEPAGE_NUM_ARTICLES);
-  $results_arch['articles'] = $data_arch['results'];
-  $results_arch['totalRows'] = $data_arch['totalRows'];
-  $results_arch['pageTitle'] = "Articles Archive | My Site";
-  require(TEMPLATE_PATH . "/archive.php");
+  $results = array();
+  $data = Article::getList(HOMEPAGE_NUM_ARTICLES);
+  $results['articles'] = $data['results'];
+  $results['totalRows'] = $data['totalRows'];
+  $results['pageTitle'] = 'Articles Archive | My Site';
+  require(TEMPLATE_PATH . '/archive.php');
 }
 
 function viewArticle() {

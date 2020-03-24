@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 require('config.php');
 session_start();
 $action = isset($_GET['action']) ? $_GET['action'] : "";
@@ -33,25 +33,25 @@ switch ($action) {
 function login() {
   $results = array();
   $results['pageTitle'] = 'Adminlogin | My Site';
-  if(isset($_POST)) {
+  if(isset($_POST['login'])) {
 
     // Пользователь получает форму входа: попытка авторизировать пользователя
     if($_POST['username'] == ADMIN_USERNAME && $_POST['password'] == ADMIN_PASSWORD) {
 
       // Вход прошел успешно: создаем сессию и перенаправляем на страницу администратора
       $_SESSION['username'] = ADMIN_USERNAME;
-      // header('Location:admin.php');
-      require(TEMPLATE_PATH . '/admin/listArticles.php');
+      header('Location: admin.php');
+      // require(TEMPLATE_PATH . '/admin/listArticles.php');
     } else {
 
       // Ошибка входа: выводим сообщение об ошибке для пользователя
-      $results['errorMessage'] = 'Incorrect username or password. Please try again.';
-      require('admin/loginForm.php');
+      $results['errorMessage'] = 'Неверные имя пользователя и/или пароль. Попробуйте снова.';
+      require(TEMPLATE_PATH . '/admin/loginForm.php');
     }
   } else {
 
     // Пользователь еще не получил форму: выводим её
-    require('admin/loginForm.php');
+    require(TEMPLATE_PATH . '/admin/loginForm.php');
   }
 }
 
@@ -62,7 +62,7 @@ function logout() {
 
 function newArticle() {
   $results = array();
-  $results['pageTitle'] = 'NewArticle';
+  $results['pageTitle'] = 'New Article';
   $reuslts['formAction'] = 'newArticle';
   
   if(isset($_POST['saveChanges'])) {
@@ -79,13 +79,38 @@ function newArticle() {
   } else {
     
     // Пользователь еще не получил форму редактирования: выводим форму
-    $results['article'] = Article::getById((int)$_GET['articleId']);
+    $results['article'] = new Article;
     require(TEMPLATE_PATH . '/admin/editArticle.php');
   }
 }
 
+function editArticle() {
+  $results = array();
+  $results['pageTitle'] = 'Редактирование статьи';
+  $results['formAction'] = 'editArticle';
+
+  if(isset($_POST['saveChanges'])) {
+    // пользователь получил форму редактирования статьи: сохраняем изменения
+    if( !$article = Article::getById( (int) $_POST['articleId']) ) {
+      header('Location: admin.php?error=articleNotFound');
+      return;
+    }
+
+    $article->storeFormValues( $_POST );
+    $article->update();
+    header( 'Location: admin.php?status=changesSaved' );
+  } elseif ( isset($_POST['cancel'] ) ) {
+    // пользователь отказался от редактирования: возвращаемся к списку статей
+    header( 'Location: admin.php' );
+  } else {
+    // форма редактирования ещё не выводилась: выводим
+    $results['article'] = Article::getById( (int)$_GET['articleId'] );
+    require( TEMPLATE_PATH . '/admin/editArticle.php' );
+  }
+}
+
 function deleteArticle() {
-  if(!$article = Article::getById((int)$_GET['articleId'])) {
+  if( !$article = Article::getById( (int)$_GET['articleId'] ) ) {
     header('Location: admin.php?error=articleNotFound');
     return;
   }
@@ -99,15 +124,15 @@ function listArticles() {
   $data = Article::getList();
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  $results['pageTitle'] = 'All articles';
+  $results['pageTitle'] = 'Все статьи';
 
   if(isset($_GET['error'])) {
-    if($_GET['error'] == 'articleNotFound') $results['errorMessage'] = 'Error: Articlenot found.';
+    if($_GET['error'] == 'articleNotFound') $results['errorMessage'] = 'Ошибка: статья не найдена.';
   }
 
   if(isset($_GET['status'])) {
-    if($_GET['status'] == 'changesSaved') $results['statusMessage'] = 'You changes have been saved.';
-    if($_GET['status'] == 'articleDeleted') $results['statusMessage'] = 'Article deleted.';
+    if($_GET['status'] == 'changesSaved') $results['statusMessage'] = 'Изменения сохранены.';
+    if($_GET['status'] == 'articleDeleted') $results['statusMessage'] = 'Статья удалена.';
   }
   require(TEMPLATE_PATH . '/admin/listArticles.php');
 }
