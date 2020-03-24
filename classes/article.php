@@ -39,9 +39,6 @@ class Article
     }
   }
 
-
-
-
   /**
   * Возвращаем объект статьи, соответствующий заданному ID статьи
   *
@@ -49,10 +46,6 @@ class Article
   * @return Article|false Объект статьи или false, если запись не найдена или возникли проблемы
   */
 
-
-
-
-  
   public static function getById($id) {
     //TODO упаковать соединние в отдельную функцию. PDO->bindValue зациклить (количестов итераций зависит от применения функции. если нужен 1 bindValue. то тоже цикл ,но с одним проходом)
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
@@ -65,9 +58,6 @@ class Article
     if($row) return new Article($row);
   }
 
-
-
-
   /**
 	* Возвращает все (или диапазон) объектов статей в базе данных
 	*
@@ -75,9 +65,6 @@ class Article
 	* @param string Optional Столбец по которому производится сортировка  статей (по умолчанию "publicationDate DESC")
 	* @return Array|false Двух элементный массив: results => массив, список объектов статей; totalRows => общее количество статей
   */
-
-
-
 
   public static function getList($numRows=1000000, $order='publicationDate DESC') {
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
@@ -127,7 +114,7 @@ class Article
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     $sql = "INSERT INTO articles (publicationDate, title, summary, content) VALUES (FROM_UNIXTIME(:publicationDate), :title, :summary, :content)";
     $st = $conn->prepare($sql);
-    //TODO: отразить как цикл, сделать функцию, эти же параметры нужны в методе update()
+
     $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
     $st->bindValue(":title", $this->title, PDO::PARAM_STR);
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
@@ -147,7 +134,7 @@ class Article
 
   public function update() {
     if(is_null($this->id)) {
-      trigger_error("Article::update(): Attempt to update an object that doesnt have its ID .", E_USER_ERROR);
+      trigger_error("Article::update(): Попытка редактирования объекта без ID . ", E_USER_ERROR);
     }
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     $sql = "UPDATE articles SET publicationDate=FROM_UNIXTIME(:publicationDate), title=:title, summary=:summary, content=:content";

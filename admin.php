@@ -2,15 +2,15 @@
 // error_reporting(0);
 require('config.php');
 session_start();
-$action = isset($_GET['action']) ? $_GET['action'] : "";
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : "";
+$action = isset( $_GET['action'] ) ? $_GET['action'] : "";
+$username = isset( $_SESSION['username'] ) ? $_SESSION['username'] : "";
 
-if($action != 'login' && $action != 'logout'&& !$username) {
+if( $action != 'login' && $action != 'logout'&& !$username ) {
   login();
   exit;
 }
 
-switch ($action) {
+switch ( $action ) {
   case 'login':
     login();
     break;
@@ -33,10 +33,10 @@ switch ($action) {
 function login() {
   $results = array();
   $results['pageTitle'] = 'Adminlogin | My Site';
-  if(isset($_POST['login'])) {
+  if( isset( $_POST['login'] ) ) {
 
     // Пользователь получает форму входа: попытка авторизировать пользователя
-    if($_POST['username'] == ADMIN_USERNAME && $_POST['password'] == ADMIN_PASSWORD) {
+    if( $_POST['username'] == ADMIN_USERNAME && $_POST['password'] == ADMIN_PASSWORD ) {
 
       // Вход прошел успешно: создаем сессию и перенаправляем на страницу администратора
       $_SESSION['username'] = ADMIN_USERNAME;
@@ -46,41 +46,41 @@ function login() {
 
       // Ошибка входа: выводим сообщение об ошибке для пользователя
       $results['errorMessage'] = 'Неверные имя пользователя и/или пароль. Попробуйте снова.';
-      require(TEMPLATE_PATH . '/admin/loginForm.php');
+      require('admin/loginForm.php');
     }
   } else {
 
     // Пользователь еще не получил форму: выводим её
-    require(TEMPLATE_PATH . '/admin/loginForm.php');
+    require('admin/loginForm.php');
   }
 }
 
 function logout() {
-  unset($_SESSION['username']);
-  header('Location: admin.php');
+  unset( $_SESSION['username'] );
+  header( 'Location: admin.php' );
 }
 
 function newArticle() {
   $results = array();
-  $results['pageTitle'] = 'New Article';
+  $results['pageTitle'] = 'Новая статья';
   $reuslts['formAction'] = 'newArticle';
   
-  if(isset($_POST['saveChanges'])) {
+  if( isset( $_POST['saveChanges'] ) ) {
 
     // Пользователь получает форму редактирования статьи: сохраняем новую статью
     $article = new Article;
     $article->storeFormValues($_POST);
     $article->insert();
     header('Location: admin.php?status=changeSaved');
-  } elseif(isset($_POST['cancel'])) {
+  } elseif( isset( $_POST['cancel'] ) ) {
 
     // Пользователь сбросил результаты редактирования: возвращаемся к списку статей
-    header('Location: admin.php');
+    header( 'Location: admin.php' );
   } else {
     
     // Пользователь еще не получил форму редактирования: выводим форму
     $results['article'] = new Article;
-    require(TEMPLATE_PATH . '/admin/editArticle.php');
+    require('admin/editArticle.php');
   }
 }
 
@@ -92,7 +92,7 @@ function editArticle() {
   if(isset($_POST['saveChanges'])) {
     // пользователь получил форму редактирования статьи: сохраняем изменения
     if( !$article = Article::getById( (int) $_POST['articleId']) ) {
-      header('Location: admin.php?error=articleNotFound');
+      header( 'Location: admin.php?error=articleNotFound' );
       return;
     }
 
@@ -105,7 +105,7 @@ function editArticle() {
   } else {
     // форма редактирования ещё не выводилась: выводим
     $results['article'] = Article::getById( (int)$_GET['articleId'] );
-    require( TEMPLATE_PATH . '/admin/editArticle.php' );
+    require( 'admin/editArticle.php' );
   }
 }
 
@@ -127,13 +127,14 @@ function listArticles() {
   $results['pageTitle'] = 'Все статьи';
 
   if(isset($_GET['error'])) {
-    if($_GET['error'] == 'articleNotFound') $results['errorMessage'] = 'Ошибка: статья не найдена.';
+    if( $_GET['error'] == 'articleNotFound' ) $results['errorMessage'] = 'Ошибка: статья не найдена.';
   }
 
-  if(isset($_GET['status'])) {
-    if($_GET['status'] == 'changesSaved') $results['statusMessage'] = 'Изменения сохранены.';
-    if($_GET['status'] == 'articleDeleted') $results['statusMessage'] = 'Статья удалена.';
+  if( isset( $_GET['status'] ) ) {
+    if($_GET['status'] == 'changesSaved' ) $results['statusMessage'] = 'Изменения сохранены.';
+    if( $_GET['status'] == 'articleDeleted' ) $results['statusMessage'] = 'Статья удалена.';
   }
-  require(TEMPLATE_PATH . '/admin/listArticles.php');
+  // require(TEMPLATE_PATH . '/admin/listArticles.php');
+  require('admin/listArticles.php');
 }
 ?>
