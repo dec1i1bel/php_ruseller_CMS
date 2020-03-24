@@ -16,8 +16,8 @@
 <body>
   <div class="container">
     <div class="d-flex align-items-center">
-      <a href="/ruseller_CMS">
-        <img src="/ruseller_CMS/templates/default/images/logo.png" id="logo" alt="Widget News logo" width='60' height='60'>
+      <a href="/php_ruseller_CMS">
+        <img src="/php_ruseller_CMS/templates/default/images/logo.png" id="logo" alt="My Site logo" width='60' height='60'>
       </a>
       <h1>My Site</h1>
     </div>

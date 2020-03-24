@@ -11,5 +11,5 @@
   <?php } ?>
 </ul>
 <p><?php echo $results_arch['totalRows'] ?> article<?php echo ($results_arch['totalRows'] != 1) ? 's' : '' ?>in total.</p>
-<p><a href="/ruseller_CMS">Return to Homepage</a></p>
+<p><a href="/php_ruseller_CMS">Return to Homepage</a></p>
 <?php include "include/footer.php" ?>

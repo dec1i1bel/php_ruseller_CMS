@@ -32,8 +32,7 @@ switch ($action) {
 
 function login() {
   $results = array();
-  $results['pageTitle'] = 'Adminlogin | Widget News';
-
+  $results['pageTitle'] = 'Adminlogin | My Site';
   if(isset($_POST)) {
 
     // Пользователь получает форму входа: попытка авторизировать пользователя

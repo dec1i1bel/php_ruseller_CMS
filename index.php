@@ -17,7 +17,7 @@ function archive() {
   $data_arch = Article::getList(HOMEPAGE_NUM_ARTICLES);
   $results_arch['articles'] = $data_arch['results'];
   $results_arch['totalRows'] = $data_arch['totalRows'];
-  $results_arch['pageTitle'] = "Articles Archive | Widget News";
+  $results_arch['pageTitle'] = "Articles Archive | My Site";
   require(TEMPLATE_PATH . "/archive.php");
 }
 
@@ -28,7 +28,7 @@ function viewArticle() {
   }
   $results = array();
   $results['article'] = Article::getById((int)$_GET['articleId']);
-  $results['pageTitle'] = $results['article']->title . " | Widget News";
+  $results['pageTitle'] = $results['article']->title . " | My Site";
   require(TEMPLATE_PATH . '/viewArticle.php');
 }
 
@@ -37,7 +37,7 @@ function homepage() {
   $data = Article::getList(HOMEPAGE_NUM_ARTICLES);
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  $results['pageTitle'] = 'Widget News';
+  $results['pageTitle'] = 'My Site';
   require(TEMPLATE_PATH . '/homepage.php');
 }
 ?>
