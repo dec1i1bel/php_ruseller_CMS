@@ -32,7 +32,7 @@ switch ( $action ) {
 
 function login() {
   $results = array();
-  $results['pageTitle'] = 'Adminlogin | My Site';
+  $results['pageTitle'] = 'Admin login | My Site';
   if( isset( $_POST['login'] ) ) {
 
     // Пользователь получает форму входа: попытка авторизировать пользователя

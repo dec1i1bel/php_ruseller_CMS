@@ -1,16 +1,15 @@
-<?php include "include/header.php" ?>
-<h1>Articles Archive</h1>
+<?php include "include/header.php"; ?>
+<h1>Архив статей</h1>
 <ul id="headlines" class="archive">
   <?php
-    var_dump($results);
     foreach($results['articles'] as $article) {
     ?>
     <li>
-      <h2><span class="pubDate"><?php date('Y-m-d', $article->publicationDate) ?></span><a href=".?action=viewArticle&amp;articleId=<?php echo $article->id ?>"><?php echo htmlspecialchars($article->title) ?></a></h2>
-      <p class="summary"><?php echo htmlspecialchars($article->$summary) ?></p>
+      <h2><span class="pubDate"><?php echo date('Y-m-d', $article->publicationDate) ?></span><a href=".?action=viewArticle&amp;articleId=<?php echo $article->id ?>"><?php echo htmlspecialchars($article->title) ?></a></h2>
+      <p class="summary"><?php echo htmlspecialchars($article->summary) ?></p>
     </li>
   <?php } ?>
 </ul>
-<p><?php echo $results['totalRows'] ?> article<?php echo ($results['totalRows'] != 1) ? 's' : '' ?>in total.</p>
-<p><a href="/php_ruseller_CMS">Return to Homepage</a></p>
+<p>Общее количество статей: <?php echo $results['totalRows'] ?></p>
+<p><a href="/php_ruseller_CMS">На главную</a></p>
 <?php include "include/footer.php" ?>

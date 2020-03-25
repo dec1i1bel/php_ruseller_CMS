@@ -13,11 +13,11 @@ switch($action) {
 }
 
 function archive() {
-  $results = array();
   $data = Article::getList(HOMEPAGE_NUM_ARTICLES);
+  $results = array();
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  $results['pageTitle'] = 'Articles Archive | My Site';
+  $results['pageTitle'] = 'My Site';
   require(TEMPLATE_PATH . '/archive.php');
 }
 

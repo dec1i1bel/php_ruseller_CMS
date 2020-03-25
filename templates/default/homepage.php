@@ -14,5 +14,5 @@
         </li>
       <?php } ?>
 </ul>
-<p><a href="templates/default/archive.php?action=archive">Articles Archive</a></p>
+<p><a href="./?action=archive">Архив статей</a></p>
 <?php include "include/footer.php" ?>
