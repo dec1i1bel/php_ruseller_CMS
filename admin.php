@@ -1,5 +1,4 @@
 <?php
-// error_reporting(0);
 require('config.php');
 session_start();
 $action = isset( $_GET['action'] ) ? $_GET['action'] : "";
@@ -32,7 +31,7 @@ switch ( $action ) {
 
 function login() {
   $results = array();
-  $results['pageTitle'] = 'Admin login | My Site';
+  $results['pageTitle'] = 'Вход в панель управления';
   if( isset( $_POST['login'] ) ) {
 
     // Пользователь получает форму входа: попытка авторизировать пользователя
@@ -51,7 +50,7 @@ function login() {
   } else {
 
     // Пользователь еще не получил форму: выводим её
-    require('admin/loginForm.php');
+    require(TEMPLATE_PATH . '/admin/loginForm.php');
   }
 }
 
@@ -95,7 +94,7 @@ function editArticle() {
       header( 'Location: admin.php?error=articleNotFound' );
       return;
     }
-
+    $article = new Article();
     $article->storeFormValues( $_POST );
     $article->update();
     header( 'Location: admin.php?status=changesSaved' );
@@ -105,7 +104,7 @@ function editArticle() {
   } else {
     // форма редактирования ещё не выводилась: выводим
     $results['article'] = Article::getById( (int)$_GET['articleId'] );
-    require( 'admin/editArticle.php' );
+    require( TEMPLATE_PATH . '/admin/editArticle.php' );
   }
 }
 
@@ -124,7 +123,7 @@ function listArticles() {
   $data = Article::getList();
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  $results['pageTitle'] = 'Все статьи';
+  $results['pageTitle'] = 'Панель управления';
 
   if(isset($_GET['error'])) {
     if( $_GET['error'] == 'articleNotFound' ) $results['errorMessage'] = 'Ошибка: статья не найдена.';
@@ -135,6 +134,6 @@ function listArticles() {
     if( $_GET['status'] == 'articleDeleted' ) $results['statusMessage'] = 'Статья удалена.';
   }
   // require(TEMPLATE_PATH . '/admin/listArticles.php');
-  require('admin/listArticles.php');
+  require(TEMPLATE_PATH . '/admin/listArticles.php');
 }
 ?>

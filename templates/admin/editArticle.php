@@ -1,19 +1,23 @@
+<?php include(TEMPLATE_PATH . '/include/header.php') ?>
+
 <div id="adminHeader">
-<h2>Редактирование статьи || My Site</h2>
 <p>Вы вошли как <b><?php echo htmlspecialchars($_SESSION['username']) ?></b></p>
 <p><a href="admin.php?action=logout">Сменить пользователя</a></p>
 </p>
 </div>
-<h1><?php echo $results['pageTitle'] ?></h1>
+<h2><?php echo $results['pageTitle'] ?></h2>
 
 <form action="admin.php?action=<?php echo $results['formAction'] ?>" method="post">
-<!-- <form action="admin.php?status=changesSaved" method="post"> -->
   <input type="hidden" name="articleId" value="<?php echo $results['article']->id ?>">
 
   <?php if(isset($results['errorMessage'])) { ?>
     <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
   <?php } ?>
   <ul>
+    <li>
+      <label for="title">Заголовок</label>
+      <input type="text" name="title" id="title" placeholder="Введите заголовок статьи не более 255 символов" required autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->title ) ?>" />
+    </li>
     <li>
       <label for="summary">Краткое описание</label>
       <textarea name="summary" id="summary" placeholder="Brief description" required maxlength="1000" cols="30" rows="10">
@@ -37,3 +41,5 @@
     <input type="submit" value="Cancel" formnovalidate name="cancel">
   </div>
 </form>
+
+<?php include(TEMPLATE_PATH . '/include/footer.php') ?>

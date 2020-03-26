@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Articles</title>
-</head>
-<body>
+<?php include(TEMPLATE_PATH . '/include/header.php') ?>
+
 <div id="adminHeader">
-<h2>Панель управления || My Site</h2>
+<!-- <h2>Список статей</h2> -->
 <p>Вы вошли как <b><?php echo htmlspecialchars($_SESSION['username']) ?></b></p> <p><a href="admin.php?action=logout">Сменить пользователя</a></p>
 </div>
-<h1>Все статьи</h1>
+<h2>Публикации</h2>
 <?php if(isset($resuls['errorMessage'])) { ?>
   <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
 <?php } ?>
@@ -27,7 +20,7 @@
   </tr>
 
   <?php foreach($results['articles'] as $article) { ?>
-    <tr onclick="location=admin.php?action=editArticle&amp;articleId=<?php echo $article->id ?>">
+    <tr onclick="location='admin.php?action=editArticle&amp;articleId=<?php echo $article->id ?>'">
       <td><?php echo date('j M Y', $article->publicationDate) ?></td>
       <td><?php echo $article->title ?></td>
     </tr>
@@ -36,5 +29,5 @@
 <p>Количество статей: <?php echo $results['totalRows'] ?></p>
 
 <p><a href="admin.php?action=newArticle">Добавить</a></p>
-</body>
-</html>
+
+<?php include(TEMPLATE_PATH . '/include/footer.php') ?>
