@@ -5,7 +5,7 @@ define('DB_DSN', 'mysql:host=localhost; port=3306; dbname=ruseller_cms');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('CLASS_PATH', 'classes');
-define('TEMPLATE_PATH', 'templates/default');
+define('TEMPLATE_PATH', 'templates');
 define('HOMEPAGE_NUM_ARTICLES', 5);
 define('ADMIN_USERNAME', 'admin');
 define('ADMIN_PASSWORD', 'admin');

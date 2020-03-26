@@ -17,7 +17,7 @@
   <div class="container">
     <div class="d-flex align-items-center">
       <a id="logo-link" href="/php_ruseller_CMS">
-        <img src="/php_ruseller_CMS/templates/default/images/logo.png" id="logo" alt="My Site logo" width='60' height='60'>
+        <img src="/php_ruseller_CMS/templates/images/logo.png" id="logo" alt="My Site logo" width='60' height='60'>
       <h1><?php echo htmlspecialchars($results['pageTitle']) ?></h1>
       </a>
     </div>
