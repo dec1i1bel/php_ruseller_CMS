@@ -89,7 +89,8 @@ function editArticle() {
 
   if(isset($_POST['saveChanges'])) {
   // if( isset( $_GET['status'] ) && $_GET['status'] == 'newArticleSaved') {
-      // echo 'hello from editArticle';
+      echo 'hello from editArticle<br>';
+      var_dump($_POST);
       // var_dump($article);
     // пользователь получил форму редактирования статьи: сохраняем изменения
     if( !$article = Article::getById( (int) $_POST['articleId']) ) {
@@ -99,7 +100,7 @@ function editArticle() {
     // $article = new Article();
     $article->storeFormValues( $_POST );
     $article->update();
-    header( 'Location: admin.php?status=changesSaved' );
+    // header( 'Location: admin.php?status=changesSaved' );
   } elseif ( isset($_POST['cancel'] ) ) {
     // пользователь отказался от редактирования: возвращаемся к списку статей
     header( 'Location: admin.php' );

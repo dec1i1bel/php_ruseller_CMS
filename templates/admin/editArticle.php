@@ -5,10 +5,12 @@
 </p>
 </div>
 
+<?php var_dump($results['article']->id); ?>
+
 <h2><?php echo htmlspecialchars($results['pageTitle']) ?></h2>
 <form action="admin.php?action=<?php echo $results['formAction'] ?>" method="post">
   <!-- <input type="hidden" name="articleId" value="<?php echo $results['article']->id ?>"> -->
-  <input type="hidden" name="articleId" value="<?php echo $_GET['articleId'] ?>">
+  <input type="hidden" name="articleId" id="articleId" value="<?php echo $results['article']->id ?>">
 
   <?php if(isset($results['errorMessage'])) { ?>
     <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
