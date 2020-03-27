@@ -78,13 +78,14 @@ class Article
 
     //вставляем статью
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content, FROM_UNIXTIME(:publicationDate))";
+    // $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content, FROM_UNIXTIME(:publicationDate))";
+    $sql = "INSERT INTO articles (title, summary, content) VALUES (:title, :summary, :content)";
     $st = $conn->prepare($sql);
 
     $st->bindValue(":title", $this->title, PDO::PARAM_STR);
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
     $st->bindValue(":content", $this->content, PDO::PARAM_STR);
-    $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
+    // $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
