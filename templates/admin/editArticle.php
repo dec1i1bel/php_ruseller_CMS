@@ -5,7 +5,7 @@
 </p>
 </div>
 
-<?php var_dump($results['article']->id); ?>
+<!-- <?php var_dump($results['article']->id); ?> -->
 
 <h2><?php echo htmlspecialchars($results['pageTitle']) ?></h2>
 <form action="admin.php?action=<?php echo $results['formAction'] ?>" method="post">
@@ -35,7 +35,7 @@
     <li>
       <label for="publicationDate">Дата публикации
       </label>
-      <input type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo results['article']->publicationDate ? date('Y-m-d', $results['article']->publicationDate) : '' ?>">
+      <input type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $results['article']->publicationDate ? date('Y-m-d', $results['article']->publicationDate) : '' ?>">
     </li>
   </ul>
   <div class="buttons">

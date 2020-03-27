@@ -96,13 +96,14 @@ class Article
       trigger_error("Article::update(): Попытка редактирования объекта без ID . ", E_USER_ERROR);
     }
 
-    echo "hello from Article update<br>";
+    // echo "hello from Article update<br>";
     var_dump($this->id);
     var_dump($this->title);
+    var_dump($this->publicationDate);
 
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     // $sql = "UPDATE articles SET id=NULL, title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate)";
-    // $sql = "UPDATE articles SET id=:id, title=:title, summary=:summary, content=:content";
+    // $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate) WHERE id=:id";
     $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content WHERE id=:id";
     $st = $conn->prepare($sql);
     
