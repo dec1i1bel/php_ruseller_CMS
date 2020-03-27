@@ -94,12 +94,19 @@ class Article
     // if(is_null($this->id)) {
     //   trigger_error("Article::update(): Попытка редактирования объекта без ID . ", E_USER_ERROR);
     // }
+
+    echo "hello from Article update<br>";
+    var_dump($this->id);
+    var_dump($this->title);
+
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     // $sql = "UPDATE articles SET id=NULL, title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate)";
+    // $sql = "UPDATE articles SET id=:id, title=:title, summary=:summary, content=:content";
     $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content";
     $st = $conn->prepare($sql);
     
     // $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
+    // $st->bindValue(":id", $this->id, PDO::PARAM_INT);
     $st->bindValue(":title", $this->title, PDO::PARAM_STR);
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
     $st->bindValue(":content", $this->content, PDO::PARAM_STR);

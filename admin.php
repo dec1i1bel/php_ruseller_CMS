@@ -89,7 +89,8 @@ function editArticle() {
 
   if(isset($_POST['saveChanges'])) {
   // if( isset( $_GET['status'] ) && $_GET['status'] == 'newArticleSaved') {
-      echo 'hello from editArticle';
+      // echo 'hello from editArticle';
+      // var_dump($article);
     // пользователь получил форму редактирования статьи: сохраняем изменения
     if( !$article = Article::getById( (int) $_POST['articleId']) ) {
       header( 'Location: admin.php?error=articleNotFound' );
