@@ -5,9 +5,6 @@
 </p>
 </div>
 
-<p><?php var_dump($results['article']); ?></p>
-<p><?php var_dump($_POST); ?></p>
-
 <h2><?php echo htmlspecialchars($results['pageTitle']) ?></h2>
 <form action="admin.php?action=<?php echo $results['formAction'] ?>" method="post">
   <input type="hidden" name="articleId" value="<?php echo $results['article']->id ?>">

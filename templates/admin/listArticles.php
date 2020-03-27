@@ -5,9 +5,6 @@
 <p>Пользователь: <b><?php echo htmlspecialchars($_SESSION['username']) ?></b>. <a href="admin.php?action=logout">Выйти</a></p>
 </p>
 </div>
-<!-- <?php var_dump($results['article']); ?> -->
-<?php var_dump($_POST); ?>
-<?php var_dump($_GET); ?>
 <h2><?php echo htmlspecialchars($results['pageTitle']) ?></h2>
 <?php if(isset($resuls['errorMessage'])) { ?>
   <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
