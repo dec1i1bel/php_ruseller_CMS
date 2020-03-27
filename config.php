@@ -9,10 +9,10 @@ define('TEMPLATE_PATH', 'templates');
 define('HOMEPAGE_NUM_ARTICLES', 5);
 define('ADMIN_USERNAME', 'admin');
 define('ADMIN_PASSWORD', 'admin');
-require(CLASS_PATH ."/article.php");
+require(CLASS_PATH . "/article.php");
 
 function handleException( $exception ) {
-  echo '<p>Sorry, a problem occured. Please try later</p>';
+  echo "<p>Проблема из файла конфига</p>";
   error_log( $exception->getMessage() );
 }
 

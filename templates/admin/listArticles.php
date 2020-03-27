@@ -2,9 +2,13 @@
 
 <div id="adminHeader">
 <!-- <h2>Список статей</h2> -->
-<p>Вы вошли как <b><?php echo htmlspecialchars($_SESSION['username']) ?></b></p> <p><a href="admin.php?action=logout">Сменить пользователя</a></p>
+<p>Пользователь: <b><?php echo htmlspecialchars($_SESSION['username']) ?></b>. <a href="admin.php?action=logout">Выйти</a></p>
+</p>
 </div>
-<h2>Публикации</h2>
+<!-- <?php var_dump($results['article']); ?> -->
+<?php var_dump($_POST); ?>
+<?php var_dump($_GET); ?>
+<h2><?php echo htmlspecialchars($results['pageTitle']) ?></h2>
 <?php if(isset($resuls['errorMessage'])) { ?>
   <div class="errorMessage"><?php echo $results['errorMessage'] ?></div>
 <?php } ?>
@@ -15,12 +19,14 @@
 
 <table>
   <tr>
+    <th>ID статьи</th>
     <th>Дата публикации</th>
     <th>Заголовок</th>
   </tr>
 
   <?php foreach($results['articles'] as $article) { ?>
     <tr onclick="location='admin.php?action=editArticle&amp;articleId=<?php echo $article->id ?>'">
+      <td><?php echo $article->id ?></td>
       <td><?php echo date('j M Y', $article->publicationDate) ?></td>
       <td><?php echo $article->title ?></td>
     </tr>

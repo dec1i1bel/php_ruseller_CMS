@@ -2,7 +2,7 @@
 
 class Article
 {
-  public $id = null;
+  // public $id = null;
   public $publicationDate = null;
   public $title = null;
   public $summary = null;
@@ -72,30 +72,30 @@ class Article
 
   public function insert() {
     //проверяем, есть ли ID у объекта статьи
-    if(is_null($this->id)) {
-      trigger_error("Article::insert(): Attempt to insert an object that already has its ID set to $this->id) ",E_USER_ERROR);
-    }
+    // if(is_null($this->id)) {
+    //   trigger_error("Article::insert(): Attempt to insert an object that already has its ID set to $this->id) ",E_USER_ERROR);
+    // }
 
     //вставляем статью
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    $sql = "INSERT INTO articles (publicationDate, title, summary, content) VALUES (FROM_UNIXTIME(:publicationDate), :title, :summary, :content)";
+    $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content, FROM_UNIXTIME(:publicationDate))";
     $st = $conn->prepare($sql);
 
-    $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
     $st->bindValue(":title", $this->title, PDO::PARAM_STR);
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
     $st->bindValue(":content", $this->content, PDO::PARAM_STR);
+    $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
   }
 
   public function update() {
-    if(is_null($this->id)) {
-      trigger_error("Article::update(): Попытка редактирования объекта без ID . ", E_USER_ERROR);
-    }
+    // if(is_null($this->id)) {
+    //   trigger_error("Article::update(): Попытка редактирования объекта без ID . ", E_USER_ERROR);
+    // }
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    $sql = "UPDATE articles SET publicationDate=FROM_UNIXTIME(:publicationDate), title=:title, summary=:summary, content=:content";
+    $sql = "UPDATE articles SET id=NULL, title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate)";
     $st = $conn->prepare($sql);
     
     $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);

@@ -31,7 +31,7 @@ switch ( $action ) {
 
 function login() {
   $results = array();
-  $results['pageTitle'] = 'Вход в панель управления';
+  $results['pageTitle'] = 'Введите логин и пароль';
   if( isset( $_POST['login'] ) ) {
 
     // Пользователь получает форму входа: попытка авторизировать пользователя
@@ -39,8 +39,7 @@ function login() {
 
       // Вход прошел успешно: создаем сессию и перенаправляем на страницу администратора
       $_SESSION['username'] = ADMIN_USERNAME;
-      header('Location: admin.php');
-      // require(TEMPLATE_PATH . '/admin/listArticles.php');
+      header( 'Location: admin.php' );
     } else {
 
       // Ошибка входа: выводим сообщение об ошибке для пользователя
@@ -62,15 +61,15 @@ function logout() {
 function newArticle() {
   $results = array();
   $results['pageTitle'] = 'Новая статья';
-  $reuslts['formAction'] = 'newArticle';
+  $results['formAction'] = 'newArticle';
   
   if( isset( $_POST['saveChanges'] ) ) {
 
     // Пользователь получает форму редактирования статьи: сохраняем новую статью
     $article = new Article;
-    $article->storeFormValues($_POST);
+    $article->storeFormValues( $_POST );
     $article->insert();
-    header('Location: admin.php?status=changeSaved');
+    header('Location: admin.php?status=newArticleSaved');
   } elseif( isset( $_POST['cancel'] ) ) {
 
     // Пользователь сбросил результаты редактирования: возвращаемся к списку статей
@@ -79,7 +78,7 @@ function newArticle() {
     
     // Пользователь еще не получил форму редактирования: выводим форму
     $results['article'] = new Article;
-    require('admin/editArticle.php');
+    require(TEMPLATE_PATH . '/admin/editArticle.php');
   }
 }
 
@@ -89,12 +88,14 @@ function editArticle() {
   $results['formAction'] = 'editArticle';
 
   if(isset($_POST['saveChanges'])) {
+  // if( isset( $_GET['status'] ) && $_GET['status'] == 'newArticleSaved') {
+      echo 'hello from editArticle';
     // пользователь получил форму редактирования статьи: сохраняем изменения
     if( !$article = Article::getById( (int) $_POST['articleId']) ) {
       header( 'Location: admin.php?error=articleNotFound' );
       return;
     }
-    $article = new Article();
+    // $article = new Article();
     $article->storeFormValues( $_POST );
     $article->update();
     header( 'Location: admin.php?status=changesSaved' );
@@ -123,7 +124,7 @@ function listArticles() {
   $data = Article::getList();
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  $results['pageTitle'] = 'Панель управления';
+  $results['pageTitle'] = 'Список статей';
 
   if(isset($_GET['error'])) {
     if( $_GET['error'] == 'articleNotFound' ) $results['errorMessage'] = 'Ошибка: статья не найдена.';
@@ -133,7 +134,6 @@ function listArticles() {
     if($_GET['status'] == 'changesSaved' ) $results['statusMessage'] = 'Изменения сохранены.';
     if( $_GET['status'] == 'articleDeleted' ) $results['statusMessage'] = 'Статья удалена.';
   }
-  // require(TEMPLATE_PATH . '/admin/listArticles.php');
   require(TEMPLATE_PATH . '/admin/listArticles.php');
 }
 ?>

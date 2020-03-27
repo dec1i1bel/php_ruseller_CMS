@@ -17,7 +17,7 @@ function archive() {
   $results = array();
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  $results['pageTitle'] = 'My Site';
+  $results['pageTitle'] = 'Архив';
   require(TEMPLATE_PATH . '/archive.php');
 }
 
@@ -28,7 +28,7 @@ function viewArticle() {
   }
   $results = array();
   $results['article'] = Article::getById((int)$_GET['articleId']);
-  $results['pageTitle'] = $results['article']->title . " | My Site";
+  $results['pageTitle'] = $results['article']->title;
   require(TEMPLATE_PATH . '/viewArticle.php');
 }
 
@@ -37,7 +37,7 @@ function homepage() {
   $data = Article::getList(HOMEPAGE_NUM_ARTICLES);
   $results['articles'] = $data['results'];
   $results['totalRows'] = $data['totalRows'];
-  $results['pageTitle'] = 'My Site';
+  $results['pageTitle'] = 'Суперсайт';
   require(TEMPLATE_PATH . '/homepage.php');
 }
 ?>

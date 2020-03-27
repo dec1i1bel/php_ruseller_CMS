@@ -1,12 +1,14 @@
 <?php include(TEMPLATE_PATH . '/include/header.php') ?>
 
 <div id="adminHeader">
-<p>Вы вошли как <b><?php echo htmlspecialchars($_SESSION['username']) ?></b></p>
-<p><a href="admin.php?action=logout">Сменить пользователя</a></p>
+<p>Пользователь: <b><?php echo htmlspecialchars($_SESSION['username']) ?></b>. <a href="admin.php?action=logout">Выйти</a></p>
 </p>
 </div>
-<h2><?php echo $results['pageTitle'] ?></h2>
 
+<p><?php var_dump($results['article']); ?></p>
+<p><?php var_dump($_POST); ?></p>
+
+<h2><?php echo htmlspecialchars($results['pageTitle']) ?></h2>
 <form action="admin.php?action=<?php echo $results['formAction'] ?>" method="post">
   <input type="hidden" name="articleId" value="<?php echo $results['article']->id ?>">
 
@@ -37,9 +39,13 @@
     </li>
   </ul>
   <div class="buttons">
-    <input type="submit" value="Save changes" name="saveChanges">
-    <input type="submit" value="Cancel" formnovalidate name="cancel">
+    <input type="submit" value="Сохранить изменения" name="saveChanges">
+    <input type="submit" value="Отмена" formnovalidate name="cancel">
   </div>
 </form>
+
+<?php if( ( isset( $result['article'] ) ) && $results['article']->id ) { ?>
+  <p><a href="admin.php?action=deleteArticle&amp;articleId=<?php echo $results['article']->id ?>" onclick="return confirm('Удалить статью?')">Удалить статью</a></p>
+<?php } ?>
 
 <?php include(TEMPLATE_PATH . '/include/footer.php') ?>
