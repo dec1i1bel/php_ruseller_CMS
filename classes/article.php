@@ -100,11 +100,14 @@ class Article
     var_dump($this->id);
     var_dump($this->title);
     var_dump($this->publicationDate);
+    // $localPublicDate = date('Y-m-d', $this->publicationDate);
+    // $localPublicDate = strtotime(date('Y-m-d', $this->publicationDate));
+    // var_dump($localPublicDate);
 
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     // $sql = "UPDATE articles SET id=NULL, title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate)";
     // $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate) WHERE id=:id";
-    $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content WHERE id=:id";
+    $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate) WHERE id=:id";
     $st = $conn->prepare($sql);
     
     // $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
@@ -112,6 +115,8 @@ class Article
     $st->bindValue(":title", $this->title, PDO::PARAM_STR);
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
     $st->bindValue(":content", $this->content, PDO::PARAM_STR);
+    $st->bindValue(":publicationDate", $this->publicationDate, PDO::PARAM_STR);
+    var_dump($st);
     $st->execute();
     $conn = null;
   }
