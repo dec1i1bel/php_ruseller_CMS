@@ -114,7 +114,6 @@ class Article
     $sql = "DELETE FROM articles WHERE id=:id";
     $st = $conn->prepare($sql);
     $st->bindValue(":id", $this->id, PDO::PARAM_INT);
-    var_dump($st);
     $st->execute();
     $conn = null;
   }

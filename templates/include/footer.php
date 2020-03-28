@@ -1,5 +1,5 @@
 <div id="footer">
-  My Site &copy; 2019. All rights reserved. <a href="/php_ruseller_CMS/admin.php">Перейти в панель управления</a>
+  Сайт &copy; 2019. All rights reserved. <a href="/php_ruseller_CMS/admin.php">Панель администратора</a>
   </div>
 </div>
 </div>
