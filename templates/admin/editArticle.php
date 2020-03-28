@@ -9,7 +9,6 @@
 
 <h2><?php echo htmlspecialchars($results['pageTitle']) ?></h2>
 <form action="admin.php?action=<?php echo $results['formAction'] ?>" method="post">
-  <!-- <input type="hidden" name="articleId" value="<?php echo $results['article']->id ?>"> -->
   <input type="hidden" name="articleId" id="articleId" value="<?php echo $results['article']->id ?>">
 
   <?php if(isset($results['errorMessage'])) { ?>
@@ -18,7 +17,7 @@
   <ul>
     <li>
       <label for="title">Заголовок</label>
-      <input type="text" name="title" id="title" placeholder="Введите заголовок статьи не более 255 символов" required autofocus maxlength="255" value="<?php echo $results['article']->title ?>" />
+      <input type="text" name="title" id="title" placeholder="Введите заголовок статьи не более 255 символов" required autofocus maxlength="255" value="<?php echo htmlspecialchars($results['article']->title) ?>" />
     </li>
     <li>
       <label for="summary">Краткое описание</label>
