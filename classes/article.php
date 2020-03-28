@@ -71,14 +71,14 @@ class Article
   }
 
   public function insert() {
-    //проверяем, есть ли ID у объекта статьи
+    // проверяем, есть ли ID у объекта статьи
     // if(is_null($this->id)) {
-    //   trigger_error("Article::insert(): Attempt to insert an object that already has its ID set to $this->id) ",E_USER_ERROR);
+    //   trigger_error("Article::insert(): попытка внести строку с который уже есть в базе: $this->id) ",E_USER_ERROR);
     // }
 
-    //вставляем статью
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     // $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content, FROM_UNIXTIME(:publicationDate))";
+    // $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content)";
     $sql = "INSERT INTO articles (title, summary, content) VALUES (:title, :summary, :content)";
     $st = $conn->prepare($sql);
 
@@ -96,21 +96,14 @@ class Article
       trigger_error("Article::update(): Попытка редактирования объекта без ID . ", E_USER_ERROR);
     }
 
-    // echo "hello from Article update<br>";
     var_dump($this->id);
     var_dump($this->title);
     var_dump($this->publicationDate);
-    // $localPublicDate = date('Y-m-d', $this->publicationDate);
-    // $localPublicDate = strtotime(date('Y-m-d', $this->publicationDate));
-    // var_dump($localPublicDate);
 
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    // $sql = "UPDATE articles SET id=NULL, title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate)";
-    // $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate) WHERE id=:id";
     $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate) WHERE id=:id";
     $st = $conn->prepare($sql);
     
-    // $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
     $st->bindValue(":id", $this->id, PDO::PARAM_INT);
     $st->bindValue(":title", $this->title, PDO::PARAM_STR);
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
