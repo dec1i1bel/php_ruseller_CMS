@@ -79,7 +79,6 @@ class Article
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
     $st->bindValue(":content", $this->content, PDO::PARAM_STR);
     $st->bindValue(":publicationDate", $this->publicationDate, PDO::PARAM_INT);
-    var_dump($st);
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
@@ -90,9 +89,9 @@ class Article
       trigger_error("Article::update(): Попытка редактирования объекта без ID . ", E_USER_ERROR);
     }
 
-    var_dump($this->id);
+    // var_dump($this->id);
     var_dump($this->title);
-    var_dump($this->publicationDate);
+    // var_dump($this->publicationDate);
 
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     $sql = "UPDATE articles SET title=:title, summary=:summary, content=:content, publicationDate=FROM_UNIXTIME(:publicationDate) WHERE id=:id";
@@ -103,7 +102,6 @@ class Article
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
     $st->bindValue(":content", $this->content, PDO::PARAM_STR);
     $st->bindValue(":publicationDate", $this->publicationDate, PDO::PARAM_STR);
-    var_dump($st);
     $st->execute();
     $conn = null;
   }
@@ -113,9 +111,10 @@ class Article
       trigger_error("Article::delete(): Попытка удаления объекта без ID .", E_USER_ERROR);
     }
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    $sql = "DELETE * FROM articles WHERE id=:id LIMIT 1";
+    $sql = "DELETE FROM articles WHERE id=:id";
     $st = $conn->prepare($sql);
     $st->bindValue(":id", $this->id, PDO::PARAM_INT);
+    var_dump($st);
     $st->execute();
     $conn = null;
   }

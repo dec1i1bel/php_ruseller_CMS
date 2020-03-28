@@ -95,7 +95,7 @@ function editArticle() {
       }
       $article->storeFormValues( $_POST );
       $article->update();
-      header( 'Location: admin.php?status=changesSaved' );
+      // header( 'Location: admin.php?status=changesSaved' );
   } elseif ( isset($_POST['cancel'] ) ) {
 
     // пользователь отказался от редактирования: возвращаемся к списку статей
@@ -113,7 +113,7 @@ function deleteArticle() {
     header('Location: admin.php?error=articleNotFound');
     return;
   }
-
+  $article->storeFormValues( $_POST );
   $article->delete();
   header('Location: admin.php?status=articleDeleted');
 }

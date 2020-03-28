@@ -18,7 +18,7 @@
   <ul>
     <li>
       <label for="title">Заголовок</label>
-      <input type="text" name="title" id="title" placeholder="Введите заголовок статьи не более 255 символов" required autofocus maxlength="255" value="<?php echo htmlspecialchars( $results['article']->title ) ?>" />
+      <input type="text" name="title" id="title" placeholder="Введите заголовок статьи не более 255 символов" required autofocus maxlength="255" value="<?php echo $results['article']->title ?>" />
     </li>
     <li>
       <label for="summary">Краткое описание</label>
@@ -44,7 +44,7 @@
   </div>
 </form>
 
-<?php if( ( isset( $result['article'] ) ) && $results['article']->id ) { ?>
+<?php if( ( isset( $results['article'] ) ) && $results['article']->id ) { ?>
   <p><a href="admin.php?action=deleteArticle&amp;articleId=<?php echo $results['article']->id ?>" onclick="return confirm('Удалить статью?')">Удалить статью</a></p>
 <?php } ?>
 
