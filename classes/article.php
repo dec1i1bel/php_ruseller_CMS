@@ -71,21 +71,15 @@ class Article
   }
 
   public function insert() {
-    // проверяем, есть ли ID у объекта статьи
-    // if(is_null($this->id)) {
-    //   trigger_error("Article::insert(): попытка внести строку с который уже есть в базе: $this->id) ",E_USER_ERROR);
-    // }
-
     $conn = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-    // $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content, FROM_UNIXTIME(:publicationDate))";
-    // $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content)";
-    $sql = "INSERT INTO articles (title, summary, content) VALUES (:title, :summary, :content)";
+    $sql = "INSERT INTO articles (title, summary, content, publicationDate) VALUES (:title, :summary, :content, FROM_UNIXTIME(:publicationDate))";
     $st = $conn->prepare($sql);
 
     $st->bindValue(":title", $this->title, PDO::PARAM_STR);
     $st->bindValue(":summary", $this->summary, PDO::PARAM_STR);
     $st->bindValue(":content", $this->content, PDO::PARAM_STR);
-    // $st->bindValue(":punlicationDate", $this->publicationDate, PDO::PARAM_INT);
+    $st->bindValue(":publicationDate", $this->publicationDate, PDO::PARAM_INT);
+    var_dump($st);
     $st->execute();
     $this->id = $conn->lastInsertId();
     $conn = null;
