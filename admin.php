@@ -44,7 +44,7 @@ function login() {
 
       // Ошибка входа: выводим сообщение об ошибке для пользователя
       $results['errorMessage'] = 'Неверные имя пользователя и/или пароль. Попробуйте снова.';
-      require('admin/loginForm.php');
+      require(TEMPLATE_PATH . 'admin/loginForm.php');
     }
   } else {
 
